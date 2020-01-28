@@ -1,0 +1,74 @@
+<html style="background-image:url('images/table.jpg')" onnkeypress='return false;'>
+<title>Trash Online</title>
+<link rel="icon" href="images/icon.png">
+<center>
+	<h1>Trash Online</h1>
+</center>
+<script src="http://code.jquery.com/jquery-3.4.1.js"></script>
+<script lang='javascript'>
+$(document).ready(function() {
+	$.ajax({
+		url: 'players.php',
+		type: 'get',
+		dataType: 'JSON',
+		success: function(players) {
+			$('#numPlayers').html('Currently Selected Number of Players: '+players);
+		}
+	});
+});
+function exit() {
+    document.location.href="/";
+}
+function selectPlayer(player) {
+	$.ajax({
+		url: 'players.php',
+		type: 'get',
+		dataType: 'JSON',
+		success: function(players) {
+			if (parseInt(players, 10)+1 > player) {
+				document.cookie = "player=" + player;
+				document.location.href="play.html";
+			}
+			else {
+				$('#notAvailable').fadeIn('slow');
+			}
+		}
+	});
+}
+function newgame() {
+	let numPlayers = $('#numPlayersSelect').val();
+	let pageUrl = 'newgame.php?players=' + numPlayers;
+	$.ajax({
+		url: pageUrl,
+		type: 'get',
+		dataType: 'JSON',
+		success: function(players){
+			if (window.innerWidth < window.innerHeight){alert('Warning: You may want to play landscape.');}
+		}
+	});
+	$.ajax({
+	    url: 'players.php',
+	    type: 'get',
+	    dataType: 'JSON',
+	    success: function(players) {
+			$('#numPlayers').html('Currently Selected Number of Players: '+players);
+	    }
+	});
+}
+</script>
+<center id='buttons'><select style='height:10%;width:75%;' id='numPlayersSelect'>
+	<option value = '2'>two</option>
+	<option value = '3'>three</option>
+	<option value = '4'>four</option>
+	<option value = '5'>five</option>
+	<option value = '1'>one</option>
+	</select><button onclick='newgame()' style='width:25%;height:10%;border:1px solid gray;' value='New Game'>New Game</button></center><button style="width:100%" onclick="exit()">Exit</button><br><br><div id='numPlayers'></div><br><center><div id='notAvailable' style='display:none;color:red;'>The previously selected player was not available</div><br>
+	<button type='submit' style='width:19%;height:10%;background-color:red;' name='player' onclick='selectPlayer(1)' value=1>Player 1</button>
+	<button type='submit' style='width:19%;height:10%;background-color:orange;' name='player' onclick='selectPlayer(2)' value=2>Player 2</button>
+	<button type='submit' style='width:19%;height:10%;background-color:yellow;' name='player' onclick='selectPlayer(3)' value=3>Player 3</button>
+	<button type='submit' style='width:19%;height:10%;background-color:green;' name='player' onclick='selectPlayer(4)' value=4>Player 4</button>
+	<button type='submit' style='width:19%;height:10%;background-color:blue;' name='player' onclick='selectPlayer(5)' value=5>Player 5</button>
+	<br><br>
+	<p>Pick your player</p>
+	</center>	
+</html>

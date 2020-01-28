@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html style="background-image:url('images/table.jpg');">
+<script src="http://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+    $(document).on('keydown', function(key) {
+        if (key.which == 13) {
+            check();
+            $("#username").val("");
+            $("#password").val("");
+        }
+    });
+    function check() {
+        let pageUrl = 'adminOptions.php?username='+$("#username").val()+'&password='+$("#password").val();
+        $.ajax({
+            url: pageUrl,
+            type: 'get',
+            dataType: 'JSON',
+            success: function(response) {
+                $("#confidential").html(response);
+            }
+        });
+    }
+    function exit() {
+        document.location.href="/";
+    }
+</script>
+<title>Trash Online | Admin Options</title>
+<center><h1>Admin Options</h1></center>
+Username: <input type="text" id="username"><br><br>
+Password: <input type="password" id="password">
+<div id="confidential"></div>
+<button onclick="exit()">Exit</button>
+</html>

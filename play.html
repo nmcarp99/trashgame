@@ -1,0 +1,114 @@
+<style>
+	.img {
+		width: 19.23375%;
+	}
+
+	.button {
+		background-color: Transparent;
+		border: none;
+	}
+</style>
+<html style="background-image:url('images/table.jpg')" onkeypress='return false;'>
+<title>Trash Online</title>
+<link rel="icon" href="images/icon.png">
+<center>
+	<h1>Trash Online</h1>
+</center>
+<script src="http://code.jquery.com/jquery-3.4.1.js">
+</script>
+<script lang='javascript'>
+	var turn = '0';
+function dReplace(card) {
+	let pageUrl = 'dreplace.php?card='+card;
+	$.ajax({
+		url: pageUrl,
+		type: 'get',
+		dataType: 'JSON'
+	});
+}
+function updateVars() {
+	$.ajax({
+		url: 'updatevars.php',
+		type: 'get',
+		dataType: 'JSON',
+		success: function(response){
+			if (response == 'gameover') {
+				document.location.href='winner.html';
+			} else {
+				if (response[0][0] != ' ') {
+					response[0].forEach(element => $('#'+element).attr("src", "images/"+response[1][parseInt(element, 10)-1]+".png"));
+				}
+				if (response[2] != '') {
+					$('#cardDrawn').attr("src", "images/"+response[2]+".png");
+					$('#cardDrawn').show();
+				}
+				if (turn != response[3][0]) {
+					turn = response[3][0];
+					if (turn == response[4][0]) {
+						alert("Your turn!");
+					}
+				}
+				if (response[5] == '') {
+					$('#discardImg').attr("src", "images/null.png");
+					$('#discardImg').show();
+				} else {
+					$('#discardImg').attr("src", "images/"+response[5]+".png");
+					$('#discardImg').show();
+				}
+			}
+		}
+	});
+}
+function replace(card) {
+	let pageUrl = 'replace.php?card='+card;
+	$.ajax({
+		url: pageUrl,
+		type: 'get',
+		dataType: 'JSON'
+	});
+}
+function drawCard() {
+	$.ajax({
+		url: 'drawCard.php',
+		type: 'get',
+		dataType: 'JSON',
+		success: function(response){
+			$('#cardDrawn').attr('src', 'images/' + response + '.png');
+			$('#cardDrawn').show();
+		}
+	});
+}
+function discard() {
+	$.ajax({
+		url: 'discard.php',
+		type: 'get',
+		dataType: 'JSON',
+		success: function(response){
+			$('#cardDrawn').attr("src", "images/null.png");
+			$('#cardDrawn').show();
+		}
+	});
+}
+function exit() {
+	document.location.href='./';
+}
+setInterval(updateVars, 500);
+
+</script>
+<button style='width:100%;height:50px;border:1px solid gray;' onclick='exit()'>Exit</button>
+<br><table style='width:100%;'><tr><td><center><button style='height:50px;width:100%' onclick='drawCard();' value='Draw'>Draw</button></center></td><td><center><button style='height:50px;width:100%' onclick='discard();'>Discard</button></center></td></tr></table><table oncontextmenu='return false;'><tr><center>
+
+<td><button oncontextmenu="dReplace(1)" ondblclick="dReplace(1)" onclick="replace(1)" class='button'><img width='100%' src='images/red_back.png' style='border:none;' id='1'></button></td>
+<td><button oncontextmenu="dReplace(2)" ondblclick="dReplace(2)" onclick="replace(2)" class='button'><img width='100%' src='images/red_back.png' style='border:none;' id='2'></button></td>
+<td><button oncontextmenu="dReplace(3)" ondblclick="dReplace(3)" onclick="replace(3)" class='button'><img width='100%' src='images/red_back.png' style='border:none;' id='3'></button></td>
+<td><button oncontextmenu="dReplace(4)" ondblclick="dReplace(4)" onclick="replace(4)" class='button'><img width='100%' src='images/red_back.png' style='border:none;' id='4'></button></td>
+<td><button oncontextmenu="dReplace(5)" ondblclick="dReplace(5)" onclick="replace(5)" class='button'><img width='100%' src='images/red_back.png' style='border:none;' id='5'></button></td>
+<td><button oncontextmenu="dReplace(6)" ondblclick="dReplace(6)" onclick="replace(6)" class='button'><img width='100%' src='images/red_back.png' style='border:none;' id='6'></button></td>
+<td><button oncontextmenu="dReplace(7)" ondblclick="dReplace(7)" onclick="replace(7)" class='button'><img width='100%' src='images/red_back.png' style='border:none;' id='7'></button></td>
+<td><button oncontextmenu="dReplace(8)" ondblclick="dReplace(8)" onclick="replace(8)" class='button'><img width='100%' src='images/red_back.png' style='border:none;' id='8'></button></td>
+<td><button oncontextmenu="dReplace(9)" ondblclick="dReplace(9)" onclick="replace(9)" class='button'><img width='100%' src='images/red_back.png' style='border:none;' id='9'></button></td>
+<td><button oncontextmenu="dReplace(10)" ondblclick="dReplace(10)" onclick="replace(10)" class='button'><img width='100%' src='images/red_back.png' style='border:none;' id='10'></button></td>
+</tr></table>
+<br>
+<table style='width:100%'><tr><td><center><img id='cardDrawn' src='images/null.png' class='img'></center></td><td><center><img src='images/null.png' class='img' id='discardImg'></center></tr></table>
+</html>
