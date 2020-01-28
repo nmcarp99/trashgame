@@ -21,7 +21,12 @@ foreach($flippedCards as $flippedCard) {
 	}
 }
 if ($finished == true) {
-	$output = 'gameover';
+    if ($turn != $_COOKIE['player']) {
+        $output = 'gameover';
+    }
+    else if (file('txt/'.$_COOKIE['game'].'players.txt')[0] == 1) {
+        $output = 'gameover';
+    }
 }
 else {
 	$output = array($flipped, $hand, $drawnCard, $turn, $player, $discard, $flippedCards);

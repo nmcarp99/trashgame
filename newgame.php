@@ -16,9 +16,11 @@ $_COOKIE['player'] = setcookie('player', "", time()-3600);
 $myfile = fopen('txt/'.$_COOKIE['game']."turn.txt", "w") or die("Unable to open file!turn");
 fwrite($myfile, 1);
 fclose($myfile);
+if (!isset($_GET['won'])) {
 $myfile = fopen('txt/'.$_COOKIE['game']."players.txt", "w") or die("Unable to open file!players");
-fwrite($myfile, $_GET['players']);
+    fwrite($myfile, $_GET['players']);
 fclose($myfile);
+}
 include "deck.php";
 shuffle($deck);
 for ($i=1;$i<6;$i++) {

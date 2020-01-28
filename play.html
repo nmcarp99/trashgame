@@ -14,7 +14,7 @@
 <center>
 	<h1>Trash Online</h1>
 </center>
-<script src="http://code.jquery.com/jquery-3.4.1.js">
+<script src="https://code.jquery.com/jquery-1.11.3.min.js">
 </script>
 <script lang='javascript'>
 	var turn = '0';
@@ -38,7 +38,7 @@ function updateVars() {
 				if (response[0][0] != ' ') {
 					response[0].forEach(element => $('#'+element).attr("src", "images/"+response[1][parseInt(element, 10)-1]+".png"));
 				}
-				if (response[2] != '') {
+				if (response[2] != '' && response[2] != '\n') {
 					$('#cardDrawn').attr("src", "images/"+response[2]+".png");
 					$('#cardDrawn').show();
 				}
@@ -90,7 +90,7 @@ function discard() {
 	});
 }
 function exit() {
-	document.location.href='./';
+	document.location.href='playerselect.html';
 }
 setInterval(updateVars, 500);
 
