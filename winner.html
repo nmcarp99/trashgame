@@ -4,6 +4,16 @@
 <title>You Won!</title>
 <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
 <script>
+    $(document).ready(function() {
+        $.ajax({
+             url: "winner.php",
+             type: "get",
+             dataType: "JSON",
+             success: function(response) {
+                 $("#discards").html("You discarded "+response+" times.");
+             }
+        });
+    });
     function home() {
         $.ajax({
              url: "newgame.php?won=true",
@@ -13,7 +23,8 @@
         document.location.href="playerselect.html";
     }
 </script>
-<center><h1>You Won!</h1><br>
+<center><h1>You Won!</h1>
+<h4 id="discards"></h4><br>
 <button style="width:100%;" onclick="home()">Exit</button>
 </center>
 </html>
