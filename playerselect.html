@@ -44,18 +44,16 @@ function newgame() {
 		dataType: 'JSON',
 		success: function(players){
 			if (window.innerWidth < window.innerHeight){alert('Warning: You may want to play landscape.');}
+			$.ajax({
+			    url: 'players.php',
+			    type: 'get',
+			    dataType: 'JSON',
+			    success: function(players) {
+					$('#numPlayers').html('Currently Selected Number of Players: '+players);
+			    }
+			});
 		}
 	});
-	setTimeout(function() {
-		$.ajax({
-		    url: 'players.php',
-		    type: 'get',
-		    dataType: 'JSON',
-		    success: function(players) {
-				$('#numPlayers').html('Currently Selected Number of Players: '+players);
-		    }
-		});
-	}, 100);
 }
 </script>
 <center id='buttons'><select style='height:10%;width:75%;' id='numPlayersSelect'>
