@@ -27,7 +27,7 @@ shuffle($deck);
 for ($i=1;$i<6;$i++) {
 	$myfile = fopen('txt/'.$_COOKIE['game'].$i."useCard.txt", "w") or die("Unable to open file!usecard");
 	for ($j=0;$j<10;$j++) {
-		fwrite($myfile, $deck[0]."\n");
+		fwrite($myfile, $deck[$j*$i]."\n");
 		unset($deck[0]);
 	}
 	fclose($myfile);
