@@ -10,4 +10,7 @@ if ($_GET['username'] == "pi" and $_GET['password'] == "Mf\$iYGLaBN1799") {
     }
     echo json_encode($output);
 }
+else if (isset($_GET['games'])) {
+    echo json_encode(count(glob("txt/*")/19));
+}
 ?>
