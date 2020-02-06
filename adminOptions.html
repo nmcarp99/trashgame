@@ -10,8 +10,8 @@
             success: function(response) {
                 $("#games").html("Games: "+response);
             }
-        }
-    }
+        });
+    });
     $(document).on('keydown', function(key) {
         if (key.which == 13) {
             check();
