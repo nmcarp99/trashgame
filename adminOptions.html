@@ -2,6 +2,16 @@
 <html style="background-image:url('images/table.jpg');">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 <script>
+    $(document).ready(function() {
+        $.ajax({
+            url: 'adminOptions.php?games',
+            type: 'get',
+            dataType: 'JSON',
+            success: function(response) {
+                $("#games").html("Games: "+response);
+            }
+        }
+    }
     $(document).on('keydown', function(key) {
         if (key.which == 13) {
             check();
