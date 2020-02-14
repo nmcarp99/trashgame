@@ -5,14 +5,16 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 <script>
 $(document).on('keypress', function(key) {
-    if(key.which == 13) {
+    if(key.which == 13 && $("#gameselect").val() != "") {
         document.cookie = "game="+$("#gameselect").val();
         document.location.href="playerselect.html";
     }
 });
 function gameSelect() {
-	document.cookie = "game="+$("#gameselect").val();
-	document.location.href="playerselect.html";
+	if($("#gameselect").val() != "") {
+		document.cookie = "game="+$("#gameselect").val();
+		document.location.href="playerselect.html";
+	}
 }
 function adminOptions() {
     document.location.href="adminOptions.html";
