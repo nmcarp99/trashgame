@@ -21,8 +21,10 @@
              url: "newgame.php?won=true",
              type: "get",
              dataType: "JSON",
+             success: function() {
+                 document.location.href="playerselect.html";
+             }
          });
-        document.location.href="playerselect.html";
     }
 </script>
 <center><h1>You Won!</h1>

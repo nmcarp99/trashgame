@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html style="background-image:url('images/table.jpg')">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script>
+    function instructions() {
+        if ($("#os").val() == "android" || $("#os").val() == "computer") {
+            $("#playing").html("<h4>Object</h4><p>The object of the game is to put the cards in order from ace to ten.</p><h4>Playing The Game</h4><p>Draw one card by clicking the <i>Draw</i> button and a new card will appear in the bottom left corner. Put the card in its place by clicking the card you want to replace it with. If you get a Queen or a Jack, you must discard. These cards cannot be played. If you get a King, you can replace it with any card. To replace from the discard pile, long-press on the card you want to replace it with.</p>");
+        }
+        else if ($("#os").val() == "apple") {
+            $("#playing").html("<h4>Object</h4><p>The object of the game is to put the cards in order from ace to ten.</p><h4>Playing The Game</h4><p>Draw one card by clicking the <i>Draw</i> button and a new card will appear in the bottom left corner. Put the card in its place by clicking the card you want to replace it with. If you get a Queen or a Jack, you must discard. These cards cannot be played. If you get a King, you can replace it with any card. To replace from the discard pile, double-click on the card you want to replace it with.</p>");
+        }
+    }
+</script>
+<title>Trash Online | How To Play</title>
+<link rel="icon" href="images/icon.png">
+<center><h1>How To Play</h1></center>
+<br>
+<h2>Game Select</h2>
+<p>Use the initial text box to enter a game code. If the game code is nonexistant, it will be created automatically. Click <i>Enter Game</i> to contimue.</p>
+<h2>Player Select</h2>
+<p>Select how many players are in the new game and press the <i>New Game</i> button to create a new game. Use the <i>Player</i> buttons to select your player.</p>
+<h2>Play</h2>
+<select id="os" onchange="instructions()">
+    <option value="">Select Device Type</option>
+    <option value="android">Android</option>
+    <option value="computer">Computer</option>
+    <option value="apple">Apple</option>
+</select>
+<div id="playing"></div>
+<h1 style="cursor: pointer;color:blue;text-decoration:underline;" onclick="document.location.href='/'"><--</h1>
+</html>
