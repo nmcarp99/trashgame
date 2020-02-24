@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html style="background-image:url('images/table.jpg')">
+<html lang="en" style="background-image:url('images/table.jpg')">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 <script>
     function instructions() {
-        if ($("#os").val() == "android" || $("#os").val() == "computer") {
+        if ($("#os").val() == "android") {
             $("#playing").html("<h4>Object</h4><p>The object of the game is to put the cards in order from ace to ten.</p><h4>Playing The Game</h4><p>Draw one card by clicking the <i>Draw</i> button and a new card will appear in the bottom left corner. Put the card in its place by clicking the card you want to replace it with. If you get a Queen or a Jack, you must discard. These cards cannot be played. If you get a King, you can replace it with any card. To replace from the discard pile, long-press on the card you want to replace it with.</p>");
+        }
+        else if ($("#os").val() == "computer") {
+            $("#playing").html("<h4>Object</h4><p>The object of the game is to put the cards in order from ace to ten.</p><h4>Playing The Game</h4><p>Draw one card by clicking the <i>Draw</i> button and a new card will appear in the bottom left corner. Put the card in its place by clicking the card you want to replace it with. If you get a Queen or a Jack, you must discard. These cards cannot be played. If you get a King, you can replace it with any card. To replace from the discard pile, right-click on the card you want to replace it with.</p>");
         }
         else if ($("#os").val() == "apple") {
             $("#playing").html("<h4>Object</h4><p>The object of the game is to put the cards in order from ace to ten.</p><h4>Playing The Game</h4><p>Draw one card by clicking the <i>Draw</i> button and a new card will appear in the bottom left corner. Put the card in its place by clicking the card you want to replace it with. If you get a Queen or a Jack, you must discard. These cards cannot be played. If you get a King, you can replace it with any card. To replace from the discard pile, double-click on the card you want to replace it with.</p>");
